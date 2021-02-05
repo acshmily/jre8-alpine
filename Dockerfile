@@ -1,5 +1,5 @@
 # AlpineLinux with a glibc-2.27-r0 and Oracle Java 8
-FROM alpine:3.7
+FROM alpine:3.13.1
 
 MAINTAINER acshmily<github.com/acshmily>
 # thanks to Anastas Dancha <anapsix@random.io>
@@ -17,8 +17,8 @@ ENV JAVA_VERSION_MAJOR=8 \
     LANG=C.UTF-8 \
     TZ=Asia/Shanghai
 # JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -server \
-RUN echo http://mirrors.aliyun.com/alpine/v3.7/main/ > /etc/apk/repositories \
-    && echo http://mirrors.aliyun.com/alpine/v3.12/community/ >> /etc/apk/repositories  \
+RUN echo http://mirrors.aliyun.com/alpine/v3.13/main/ > /etc/apk/repositories \
+    && echo http://mirrors.aliyun.com/alpine/v3.13/community/ >> /etc/apk/repositories  \
     && apk update && apk add ca-certificates && apk add tzdata && cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apk del tzdata
 
