@@ -39,7 +39,7 @@ RUN set -ex && \
     JAVA_PACKAGE_SHA256=$(curl -sSL https://www.oracle.com/webfolder/s/digest/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}checksum.html | grep -E "${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64\.tar\.gz" | grep -Eo '(sha256: )[^<]+' | cut -d: -f2 | xargs) && \
     #echo "/tmp/java.tar.gz sha256" sha256sum /tmp/java.tar.gz && \
 	DOWNLOAD_JAVA_PACKAGE_SHA256 = $(sha256sum /tmp/java.tar.gz) && \
-	echo $DOWNLOAD_JAVA_PACKAGE_SHA256 && \
+	#echo $DOWNLOAD_JAVA_PACKAGE_SHA256 && \
     echo "${JAVA_PACKAGE_SHA256} /tmp/java.tar.gz" > /tmp/java.tar.gz.sha256 && \
     sha256sum -c /tmp/java.tar.gz.sha256 && \
     gunzip /tmp/java.tar.gz && \
