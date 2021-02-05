@@ -1,13 +1,14 @@
 # AlpineLinux with a glibc-2.27-r0 and Oracle Java 8
-FROM alpine:3.7
+FROM alpine:3.12
 
-MAINTAINER Fable Tang <tang.fable@gmail.com>
+MAINTAINER acshmily <github.com/acshmily>
+# thanks to Fable Tang <tang.fable@gmail.com>
 # thanks to Anastas Dancha <anapsix@random.io>
 
 # Java Version and other ENV
 ENV JAVA_VERSION_MAJOR=8 \
-    JAVA_VERSION_MINOR=162 \
-    JAVA_VERSION_BUILD=12 \
+    JAVA_VERSION_MINOR=281 \
+    JAVA_VERSION_BUILD=09 \
     JAVA_PACKAGE=server-jre \
     JAVA_JCE=unlimited \
     JAVA_HOME=/opt/jdk \
@@ -33,7 +34,7 @@ RUN set -ex && \
     /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
     mkdir /opt && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
-      http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/0da788060d494f5095bf8624735fa2f1/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
+      http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/89d678f2be164786b292527658ca1605/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
     JAVA_PACKAGE_SHA256=$(curl -sSL https://www.oracle.com/webfolder/s/digest/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}checksum.html | grep -E "${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64\.tar\.gz" | grep -Eo '(sha256: )[^<]+' | cut -d: -f2 | xargs) && \
     echo "${JAVA_PACKAGE_SHA256}  /tmp/java.tar.gz" > /tmp/java.tar.gz.sha256 && \
     sha256sum -c /tmp/java.tar.gz.sha256 && \
