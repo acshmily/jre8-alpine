@@ -17,9 +17,7 @@ ENV JAVA_VERSION_MAJOR=8 \
     LANG=C.UTF-8 \
     TZ=Asia/Shanghai
 # JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -server \
-RUN echo http://mirrors.aliyun.com/alpine/v3.7/main/ > /etc/apk/repositories \
-    && echo http://mirrors.aliyun.com/alpine/v3.7/community/ >> /etc/apk/repositories  \
-    && apk update && apk add ca-certificates && apk add tzdata && cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apk update && apk add ca-certificates && apk add tzdata && cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apk del tzdata
 
 # do all in one step
